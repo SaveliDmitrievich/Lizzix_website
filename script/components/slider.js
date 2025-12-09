@@ -12,18 +12,17 @@ export function initSlider({
 
 	if (heartId) {
 		const heart = document.getElementById(heartId)
-		const currentTime = new Date().getTime()
-		let lastTap = 0
+
 		if (heart) {
+			let lastTap = 0
 			slider.addEventListener('dblclick', () => addLike(heart))
 			slider.addEventListener('touchend', () => {
+				const currentTime = new Date().getTime()
 				const tapLength = currentTime - lastTap
-				if (tapLength < 300) {
+				if (tapLength < 350) {
 					addLike(heart)
-					console.log('chupa')
 				}
 				lastTap = currentTime
-				console.log('last:', lastTap)
 			})
 		}
 	}
@@ -50,13 +49,13 @@ export function initSlider({
 		isDown = false
 		slider.classList.remove('active')
 
-		const index = Math.round(slider.scrollLeft / slideWidth)
-		const scrollX = index * slider.clientWidth
+		// const index = Math.round(slider.scrollLeft / slideWidth)
+		// const scrollX = index * slider.clientWidth
 
-		slider.scrollTo({
-			left: scrollX,
-			behavior: 'smooth',
-		})
+		// slider.scrollTo({
+		// 	left: scrollX,
+		// 	behavior: 'smooth',
+		// })
 	})
 
 	slider.addEventListener('mousemove', e => {
