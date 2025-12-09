@@ -23,17 +23,20 @@
 
 html {
 	font-size: 16px;
+	overflow-y: scroll;
 }
 
 * {
 	margin: 0;
 	box-sizing: border-box;
-	font-family: 'Marck Script', cursive;
+	font-family: 'Marck Script';
 	font-weight: 400;
 	font-style: normal;
 }
 
 body {
+	display: flex;
+	flex-direction: column;
 	background: linear-gradient(
 		45deg,
 		#7425be 0%,
@@ -44,9 +47,13 @@ body {
 	background-attachment: fixed;
 	margin: 0;
 	min-height: 100vh;
+	/*============== new height ================*/
+
 	color: var(--primary-color);
 }
-
+main {
+	flex: 1;
+}
 .container {
 	max-width: 1440px;
 	margin: 0 auto;
@@ -98,6 +105,18 @@ a {
 }
 
 .menu_item--decoration:hover {
+	background-size: 100% 2px;
+	background-position: 0 80%;
+}
+.link {
+	background-image: linear-gradient(var(--primary-color), var(--primary-color));
+	background-size: 0 2px;
+	background-position: 100% 80%;
+	transition: background-size 0.4s ease;
+	background-repeat: no-repeat;
+}
+
+.link:hover {
 	background-size: 100% 2px;
 	background-position: 0 80%;
 }
@@ -193,7 +212,7 @@ a {
 }
 .footer-content {
 	text-align: center;
-	font-size: clamp(2vw, 3.5vw, 1.5rem);
+	font-size: clamp(1rem, 3vw, 1.3rem);
 }
 
 /*======================== MAIN PAGE ============================*/
@@ -289,7 +308,7 @@ a {
 	}
 }
 
-/* ==================================== BLOCKS =================================*/
+/* ========================= BLOCKS ========================*/
 
 .blocks {
 	padding: 10px;
@@ -351,6 +370,8 @@ a {
 	overflow-x: auto;
 	scrollbar-width: none;
 	cursor: pointer;
+	scroll-snap-type: x mandatory;
+	scroll-behavior: smooth;
 }
 
 .post-content::-webkit-scrollbar {
@@ -358,11 +379,13 @@ a {
 }
 
 .post-image-container {
+	scroll-snap-type: x mandatory;
 	flex: 0 0 100%;
 	aspect-ratio: 1 / 1;
 	margin: 10px 0;
 	position: relative;
 	overflow: hidden;
+	scroll-snap-align: start;
 }
 
 .post-image {
@@ -497,8 +520,112 @@ a {
 	width: 40%;
 	position: absolute;
 }
+/* ==================== HEAVEN BLOCK ======================== */
+.heaven-block {
+	background-image: url('img/biography-block.png');
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	height: 105vh;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 100px 0;
+}
 
+.heaven-wrapper {
+	text-align: center;
+	color: white;
+}
+.heaven-wrapper h2,
+p {
+	text-shadow: 0 0 2px black;
+}
+.heaven-wrapper h2 {
+	font-size: clamp(2rem, 7vw, 5rem);
+}
+.heaven-wrapper a {
+	padding-bottom: 23px;
+	color: #fff;
+	font-size: clamp(1.5rem, 5vw, 3rem);
+}
+
+.link {
+	background-image: linear-gradient(white);
+	background-size: 100% 2px;
+	background-position: 100% 80%;
+	transition: background-size 0.2s ease;
+	background-repeat: no-repeat;
+}
+
+.link:hover {
+	background-image: linear-gradient(white);
+	background-size: 0 2px;
+	background-position: 0 80%;
+}
+
+.reverse-hover {
+	background-size: 100% 1px;
+}
+
+.reverse-hover:hover {
+	background-size: 0 1px;
+}
+
+/* ==================== BIOGRAPHY PAGE ======================= */
+/* ======= BLOCK ========== */
+.block {
+	overflow: hidden;
+	margin: 30px 20px 0px 20px;
+	background: rgba(0, 0, 0, 0.184);
+}
+.block h1 {
+	text-align: center;
+	margin-top: 30px;
+	padding: clamp(0.3rem, 2vw, 2rem);
+	text-transform: uppercase;
+	letter-spacing: 5px;
+	font-size: clamp(1.5rem, 5vw, 4.5rem);
+}
+.content {
+	display: flex;
+	padding: 50px;
+	padding-top: 0;
+}
+
+.image-wrapper {
+	flex: 0.7;
+	float: left;
+	width: 300px;
+	margin: 0 20px 0 0;
+}
+
+.image-wrapper img {
+	width: 100%;
+	height: auto;
+	display: block;
+}
+
+.text-wrapper {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+.text-wrapper p {
+	font-size: clamp(0.8rem, 4vw, 1.5rem);
+	text-align: justify;
+}
+
+.heading3 {
+	text-transform: uppercase;
+	font-size: clamp(1rem, 3vw, 3rem);
+}
+
+/* ================== MOBILE VERSION ==================== */
 @media (max-width: 800px) {
+	/* ==== MOBILE HEADER ===== */
 	#burger {
 		display: flex;
 	}
@@ -511,6 +638,7 @@ a {
 		height: 50vw;
 	}
 
+	/* ==== MOBILE POST INST ==== */
 	.blocks {
 		display: grid;
 		grid-template-columns: 1fr;
@@ -530,5 +658,31 @@ a {
 	.circular {
 		margin: 0 auto;
 		width: 50%;
+	}
+	.heaven-block {
+		height: 50vh;
+		margin: 20px 0;
+	}
+	/* =========== MOBILE BIOGRAPHY ========= */
+	.block h1 {
+		margin-top: 10px;
+	}
+	.content {
+		padding: 15px;
+		padding-top: 0;
+		flex-direction: column;
+	}
+	.text-wrapper {
+		margin-top: 10px;
+		gap: 15px;
+	}
+	.image-wrapper {
+		float: none;
+		margin: 0 auto 20px;
+		width: 100%;
+		max-width: 250px;
+	}
+	.heading3 {
+		text-align: center;
 	}
 }
