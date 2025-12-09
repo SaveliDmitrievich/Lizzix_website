@@ -70,6 +70,15 @@ export function home() {
 		</section>
 
 	</div>
+
+	<section class="heaven-block">
+		<div class="heaven-wrapper">
+			<h2>Маленькая история Лизы</h2>
+			<p>
+				<a href="#biography" class="link">узнать больше</a>
+			</p>
+		</div>
+	</section> 
 				`
 	return template.content.cloneNode(true)
 }
